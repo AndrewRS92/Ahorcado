@@ -31,7 +31,8 @@ namespace Ahorcado
                     Console.Clear();
                     if (dificultad == 1)
                     {
-
+                        Partida partida = new Partida();
+                        partida.Lanzar();
                     }
                     if (dificultad == 2)
                     {
