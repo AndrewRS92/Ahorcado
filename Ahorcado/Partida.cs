@@ -12,18 +12,47 @@ namespace Ahorcado
         {
             int numeroDeFallos = 0;
             string palabra = "zopenco";
+            List<char> letrasProbadas = new List<char>();
+            List<char> letrasCorrectas= new List<char>();
             while (true)
             {
-                Dibujos.DibujoInicial();
+                Dibujar(numeroDeFallos);
                 Console.WriteLine();
                 Console.WriteLine();
                 for (int i = 0; i < palabra.Length; i++)
                 {
-                    Console.Write("_ ");
+                    if (letrasCorrectas.Contains(palabra[i]))
+                    {
+                        Console.Write(palabra[i]+" ");
+                    }
+                    else
+                    {
+                        Console.Write("_ ");
+                    }
+                }
+                Console.WriteLine();
+                Console.Write("Has usado las letras: ");
+                foreach (char letrilla in letrasProbadas)
+                {
+                    Console.Write(letrilla + ", ");
                 }
                 Console.WriteLine();
                 Console.WriteLine("Dame una letra");
                 char letra = Convert.ToChar(Console.ReadLine());
+
+                if (letrasProbadas.Contains(letra)|| !palabra.Contains(letra))
+                {
+                    numeroDeFallos++;
+                }
+                else
+                {
+                    if (palabra.Contains(letra))
+                    {
+                        letrasCorrectas.Add(letra);
+                    }
+                }
+                letrasProbadas.Add(letra);
+                Console.Clear();  
             }
         }
         
