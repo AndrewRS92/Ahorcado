@@ -11,15 +11,15 @@ namespace Ahorcado
 
         public void Lanzar()
         {
-           bool exit=false;
-            while (exit==false)
-            {   
+            bool exit = false;
+            while (exit == false)
+            {
                 Console.WriteLine("Bienvenido al Ahorcado. Pulse enter para continuar o Escape para salir.");
                 var tecla = Console.ReadKey();
                 Console.Clear();
                 if (tecla.Key == ConsoleKey.Escape)
                 {
-                    exit=true;  
+                    exit = true;
                 }
                 if (tecla.Key == ConsoleKey.Enter)
                 {
@@ -29,19 +29,9 @@ namespace Ahorcado
                     Console.WriteLine("3. Dificil");
                     int dificultad = Convert.ToInt32(Console.ReadLine());
                     Console.Clear();
-                    if (dificultad == 1)
-                    {
-                        Partida partida = new Partida();
-                        partida.Lanzar();
-                    }
-                    if (dificultad == 2)
-                    {
 
-                    }
-                    if (dificultad == 3)
-                    {
-
-                    }
+                    Partida partida = new Partida(dificultad);
+                    partida.Lanzar();
                 }
 
             }
