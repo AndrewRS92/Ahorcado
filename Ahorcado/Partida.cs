@@ -8,12 +8,38 @@ namespace Ahorcado
 {
     public class Partida
     {
+        public string Palabra { get; set; }
+        public Partida(int dificultad)
+        {
+            if (dificultad == 1)
+            {
+                Random rand = new Random();
+                int aleatorio= rand.Next(0, Palabras.Facil.Count);
+                Palabra = Palabras.Facil[aleatorio];
+
+            }
+            if (dificultad == 2)
+            {
+                Random rand = new Random();
+                int aleatorio = rand.Next(0, Palabras.Media.Count);
+                Palabra = Palabras.Facil[aleatorio];
+
+            }
+            if (dificultad == 3)
+            {
+                Random rand = new Random();
+                int aleatorio = rand.Next(0, Palabras.Dificil.Count);
+                Palabra = Palabras.Facil[aleatorio];
+
+            }
+
+        }
         public void Lanzar()
         {
             int numeroDeFallos = 0;
-            string palabra = "zopenco";
+            string palabra = Palabra;
             List<char> letrasProbadas = new List<char>();
-            List<char> letrasCorrectas= new List<char>();
+            List<char> letrasCorrectas = new List<char>();
             while (true)
             {
                 Dibujar(numeroDeFallos);
@@ -23,7 +49,7 @@ namespace Ahorcado
                 {
                     if (letrasCorrectas.Contains(palabra[i]))
                     {
-                        Console.Write(palabra[i]+" ");
+                        Console.Write(palabra[i] + " ");
                     }
                     else
                     {
@@ -40,7 +66,7 @@ namespace Ahorcado
                 Console.WriteLine("Dame una letra");
                 char letra = Convert.ToChar(Console.ReadLine());
 
-                if (letrasProbadas.Contains(letra)|| !palabra.Contains(letra))
+                if (letrasProbadas.Contains(letra) || !palabra.Contains(letra))
                 {
                     numeroDeFallos++;
                 }
@@ -52,13 +78,13 @@ namespace Ahorcado
                     }
                 }
                 letrasProbadas.Add(letra);
-                Console.Clear();  
+                Console.Clear();
             }
         }
-        
+
         private void Dibujar(int numeroDeFallos)
         {
-            if(numeroDeFallos == 0)
+            if (numeroDeFallos == 0)
             {
                 Dibujos.DibujoInicial();
             }
