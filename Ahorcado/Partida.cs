@@ -40,7 +40,8 @@ namespace Ahorcado
             string palabra = Palabra;
             List<char> letrasProbadas = new List<char>();
             List<char> letrasCorrectas = new List<char>();
-            while (true)
+            bool salir=false;
+            while (!salir)
             {
                 Dibujar(numeroDeFallos);
                 Console.WriteLine();
@@ -69,12 +70,30 @@ namespace Ahorcado
                 if (letrasProbadas.Contains(letra) || !palabra.Contains(letra))
                 {
                     numeroDeFallos++;
+                    if (numeroDeFallos == 6)
+                    {
+                        Console.Clear();
+                        Dibujar(numeroDeFallos);
+                        Console.WriteLine("Has perdido  :(");
+                        Console.WriteLine("La palabra era "+palabra);
+                        Console.ReadLine();
+                        salir = true;
+                    }
                 }
                 else
                 {
                     if (palabra.Contains(letra))
                     {
                         letrasCorrectas.Add(letra);
+                        if (Ganar(palabra,letrasCorrectas))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("¡Felicidades! Has ganado.");
+                            Console.WriteLine("La palabra era " + palabra);
+                            Console.ReadLine();
+                            salir = true;
+
+                        }
                     }
                 }
                 letrasProbadas.Add(letra);
@@ -111,8 +130,20 @@ namespace Ahorcado
             if (numeroDeFallos == 6)
             {
                 Dibujos.DibujoSeis();
+
             }
 
+        }
+        private bool Ganar(string palabra, List<char> letrasCorrectas)
+        {
+            for(int i = 0; i < palabra.Length; i++)
+            {
+                if (!letrasCorrectas.Contains(palabra[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
